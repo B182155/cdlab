@@ -1,0 +1,27 @@
+%{
+	#include<stdio.h>
+	int yyerror(char* e);
+%}
+
+%token Number
+%left '+' '-'
+%left '*' '/'
+
+%%
+A : E {printf("\n");};
+E : E '+' E {printf("+");};
+    | E '-' E {printf("-");};
+    | E '*' E  {printf("*");};
+    | E '/' E  {printf("/");};
+    | '('E')' 
+    | Number {printf("%d",Number);};
+%%
+
+int main(){
+	printf("Enter expression :");
+	yyparse();
+}
+
+int yyerror(char* e){
+	printf("error %s",e);
+}

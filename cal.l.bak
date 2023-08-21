@@ -1,0 +1,14 @@
+%{
+	#include<stdio.h>
+	#include "cal.tab.h"
+	int yylval;
+%}
+
+%%
+
+[0-9]+  {yylval=atoi(yytext);return Number;};
+. return yytext[0];
+
+%%
+
+int yywrap(){ return 1;};
